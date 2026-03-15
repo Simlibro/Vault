@@ -1,0 +1,128 @@
+/* Host container */
+
+vault-dialog-host {
+    position: fixed;
+    inset: 0;
+    display: none;
+    z-index: 1000;
+}
+
+vault-dialog-host[open] {
+    display: grid;
+    place-items: center;
+}
+
+
+/* Overlay */
+
+.dialog-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(43, 43, 40, .28);
+
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+
+/* Panel container */
+
+.dialog-panel {
+    position: relative;
+
+    width: min(92vw, 42rem);
+    max-height: 90vh;
+
+    overflow: hidden;
+    border-radius: var(--radius);
+    z-index: 1;
+}
+
+
+/* Dialog card */
+
+.dialog-card {
+    width: 100%;
+
+    padding: 1rem;
+
+    display: grid;
+    gap: .9rem;
+
+    background: var(--panel);
+    border-radius: var(--radius);
+    border: 3px solid var(--text);
+
+    box-shadow:
+        -6px -6px 12px var(--light),
+         6px  6px 12px var(--dark);
+}
+
+
+/* Text elements */
+
+.dialog-title {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.dialog-text {
+    margin: 0;
+    color: var(--muted);
+    white-space: pre-line;
+}
+
+
+/* Body */
+
+.dialog-body {
+    display: grid;
+    gap: .9rem;
+}
+
+
+/* Fields */
+
+.dialog-field {
+    display: grid;
+    gap: .35rem;
+}
+
+.dialog-field-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .5rem;
+    flex-wrap: wrap;
+}
+
+.dialog-field-head span {
+    color: var(--muted);
+}
+
+.dialog-field input {
+    width: 100%;
+
+    padding: .7rem .8rem;
+
+    background: var(--field);
+    border-radius: 10px;
+}
+
+
+/* Buttons */
+
+.dialog-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: .75rem;
+    margin-top: .5rem;
+}
+
+
+/* Prevent background scrolling */
+
+body.dialog-open {
+    overflow: hidden;
+}

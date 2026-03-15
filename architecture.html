@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vault | Technical Architecture</title>
+  <meta
+    name="description"
+    content="Technical overview of Vault, an offline password manager PWA built with static HTML, vanilla JavaScript, local encryption, browser storage, and a service worker."
+  />
+  <meta
+    name="keywords"
+    content="Vault architecture, password manager architecture, PWA architecture, offline password manager technical notes, vanilla JavaScript password manager"
+  />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#efede8" />
+  <link rel="canonical" href="https://www.simlibro.com/vault/architecture.html" />
+
+  <meta property="og:title" content="Vault | Technical Architecture" />
+  <meta
+    property="og:description"
+    content="Technical notes for Vault, an offline password manager PWA with local encryption, browser storage, and manual export and import."
+  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://www.simlibro.com/vault/architecture.html" />
+
+  <link rel="stylesheet" href="css/app.css" />
+</head>
+<body>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="site-brand" href="index.html">
+        <div class="site-brand-mark" aria-hidden="true">🔐</div>
+        <div class="site-brand-text">
+          Vault
+          <small>Technical architecture</small>
+        </div>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <a class="site-link" href="index.html">Home</a>
+        <a class="site-link" href="install.html">Install</a>
+        <a class="site-link" href="privacy.html">Privacy</a>
+        <a class="site-link current" href="architecture.html">Technical</a>
+        <a class="site-link" href="app.html">Open Vault</a>
+      </nav>
+    </header>
+
+    <main class="site-main">
+      <section class="site-panel">
+        <div class="site-eyebrow">Technical overview</div>
+        <h1>Vault architecture</h1>
+        <p>
+          Vault is an offline password manager that runs entirely in the browser. Credentials are encrypted locally and
+          stored on the user’s device. No passwords are transmitted to a server and no cloud service is required.
+        </p>
+      </section>
+
+      <section class="site-split">
+        <article class="site-panel">
+          <h2>Core model</h2>
+          <ul class="site-list">
+            <li><strong>Client-side encryption</strong> using the browser’s Web Crypto APIs.</li>
+            <li><strong>Local persistence</strong> using browser storage on the device.</li>
+            <li><strong>Manual export and import</strong> of the encrypted vault file.</li>
+            <li><strong>Offline capability</strong> through PWA installation and a service worker.</li>
+          </ul>
+        </article>
+
+        <article class="site-panel">
+          <h2>Design intent</h2>
+          <p>
+            The design stays deliberately small and understandable: static pages, vanilla JavaScript, local encryption,
+            and no dependency on a remote account system.
+          </p>
+        </article>
+      </section>
+
+      <section class="site-split">
+        <article class="site-panel">
+          <h2>Application shape</h2>
+          <ul class="site-list">
+            <li><strong>app.html</strong> – app shell and runtime entry point.</li>
+            <li><strong>app.js</strong> – main application controller.</li>
+            <li><strong>storage.js</strong> – local save, load, import, export, and entry IDs.</li>
+            <li><strong>crypto.js</strong> – client-side encryption helpers.</li>
+            <li><strong>UI modules</strong> – entry rendering, dialogs, icons, search, reset, and auto-lock behaviour.</li>
+          </ul>
+        </article>
+
+        <article class="site-panel">
+          <h2>Security boundaries</h2>
+          <p>
+            Vault reduces dependency on third-party infrastructure, but it does not claim to protect against a compromised
+            device, weak passwords, careless backups, or unsafe operating environments.
+          </p>
+        </article>
+      </section>
+
+      <section class="site-callout">
+        <h2>Practical summary</h2>
+        <p>
+          Technically, Vault aims for clarity rather than complexity: local encryption, local storage, deliberate backup
+          movement, and a small code surface that can be inspected and maintained.
+        </p>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>This page is intended for technical readers who want the trust model and implementation outline in plain language.</p>
+      <div class="site-footer-links">
+        <a href="index.html">Home</a>
+        <a href="install.html">Install</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="app.html">Open Vault</a>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

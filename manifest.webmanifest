@@ -1,0 +1,23 @@
+{
+  "name": "Password Vault",
+  "short_name": "Vault",
+  "start_url": "/vault/app.html",
+  "id": "/vault/",
+  "scope": "/vault/",
+  "display": "standalone",
+  "background_color": "#efede8",
+  "theme_color": "#efede8",
+  "description": "Encrypted offline password vault",
+  "icons": [
+    {
+      "src": "/vault/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/vault/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

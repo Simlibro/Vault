@@ -1,0 +1,4 @@
+Project: Vault
+Description: Local-first password vault PWA
+Author: Campbell Ellis
+Site: https://www.simlibro.com/vault/

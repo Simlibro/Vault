@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vault | Open Vault</title>
+  <meta
+    name="description"
+    content="Open Vault, the offline password manager PWA. This app encrypts and stores your vault locally in the browser."
+  />
+  <meta name="robots" content="noindex, follow" />
+  <meta name="theme-color" content="#efede8" />
+  <link rel="stylesheet" href="css/app.css" />
+  <link rel="stylesheet" href="css/search.css" />
+  <link rel="stylesheet" href="css/dialog.css" />
+</head>
+
+<body>
+  <script>
+    if (location.protocol !== "file:") {
+      const manifestLink = document.createElement("link");
+      manifestLink.rel = "manifest";
+      manifestLink.href = "manifest.webmanifest";
+      document.head.appendChild(manifestLink);
+    }
+  </script>
+
+  <script>
+    window.Vault = window.Vault || {};
+    window.Vault.isStandalone =
+      window.matchMedia("(display-mode: standalone)").matches ||
+      window.navigator.standalone === true;
+  </script>
+
+  <div id="browser-chrome" class="browser-chrome" hidden>
+    <header class="site-header">
+      <a class="site-brand" href="index.html">
+        <div class="site-brand-mark" aria-hidden="true">🔐</div>
+        <div class="site-brand-text">
+          Vault
+          <small>Browser view</small>
+        </div>
+      </a>
+
+      <nav class="site-nav" aria-label="Primary">
+        <a class="site-link" href="index.html">Home</a>
+        <a class="site-link" href="install.html">Install</a>
+        <a class="site-link" href="privacy.html">Privacy</a>
+        <a class="site-link" href="architecture.html">Technical</a>
+        <a class="site-link current" href="app.html">Open Vault</a>
+      </nav>
+    </header>
+  </div>
+
+  <button id="installBtn" hidden>Install Vault</button>
+
+  <div class="app">
+    <div id="topbar-actions" class="topbar-actions">
+      <div class="topbar-group">
+        <button id="search-button" class="icon-button"></button>
+        <button data-action="add" class="icon-button"></button>
+      </div>
+
+      <div class="topbar-group">
+        <button id="export-button" class="icon-button"></button>
+        <button id="import-button" class="icon-button"></button>
+      </div>
+
+      <div class="topbar-group">
+        <button id="reset-password-button" class="icon-button"></button>
+      </div>
+
+      <div class="topbar-group topbar-group-right">
+        <button id="lock-button" class="icon-button"></button>
+      </div>
+    </div>
+
+    <section id="unlock" class="unlock">
+      <div class="unlock-actions">
+        <input id="master-password" type="password" placeholder="Enter your master password" />
+        <button id="toggle-master" class="icon-button"></button>
+      </div>
+
+      <button id="unlock-button">Unlock vault</button>
+    </section>
+
+    <section id="vault" class="vault" hidden>
+      <div id="entries" class="entries"></div>
+    </section>
+  </div>
+
+  <input id="import-file-input" type="file" accept=".json,application/json" hidden />
+  <vault-dialog-host></vault-dialog-host>
+
+  <script>
+    const browserChrome = document.getElementById("browser-chrome");
+    const installBtn = document.getElementById("installBtn");
+
+    if (!window.Vault.isStandalone) {
+      browserChrome.hidden = false;
+    }
+  </script>
+
+  <script src="./js/state.js"></script>
+  <script src="./js/crypto.js"></script>
+  <script src="./js/storage.js"></script>
+  <script src="./js/icons.js"></script>
+  <script src="./js/vault-dialog-host.js"></script>
+  <script src="./js/dialog.js"></script>
+  <script src="./js/vault-entry.js"></script>
+  <script src="./js/autolock.js"></script>
+  <script src="./js/search.js"></script>
+  <script src="./js/reset.js"></script>
+  <script src="./js/app.js"></script>
+
+  <script>
+    let deferredInstallPrompt = null;
+
+    if (!window.Vault.isStandalone) {
+      window.addEventListener("beforeinstallprompt", event => {
+        event.preventDefault();
+        deferredInstallPrompt = event;
+        installBtn.hidden = false;
+      });
+
+      installBtn.addEventListener("click", async () => {
+        if (!deferredInstallPrompt) return;
+        if (window.Vault.app?.lockVault) {
+          window.Vault.app.lockVault("manual", true);
+        }
+        deferredInstallPrompt.prompt();
+        await deferredInstallPrompt.userChoice;
+        deferredInstallPrompt = null;
+        installBtn.hidden = true;
+      });
+    }
+
+    window.addEventListener("appinstalled", () => {
+      const unlockSection = document.getElementById("unlock");
+      const vaultSection = document.getElementById("vault");
+      const entries = document.getElementById("entries");
+      const masterPassword = document.getElementById("master-password");
+
+      if (entries) entries.innerHTML = "";
+      if (masterPassword) masterPassword.value = "";
+      if (vaultSection) vaultSection.hidden = true;
+      if (unlockSection) unlockSection.hidden = false;
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 150);
+    });
+  </script>
+</body>
+</html>

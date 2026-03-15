@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /
+Allow: /vault/
+
+Sitemap: https://www.simlibro.com/sitemap.xml
