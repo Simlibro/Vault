@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Vault | Offline Password Manager PWA</title>
-  <meta
-    name="description"
-    content="Vault is an offline password manager PWA that encrypts passwords locally in your browser. No accounts, no cloud sync, no remote storage."
-  />
-  <meta
-    name="keywords"
-    content="Vault, password manager, offline password manager, local-first password manager, browser password vault, PWA password manager, encrypted password vault"
-  />
+  <meta name="description"
+    content="Vault is an offline password manager PWA that encrypts passwords locally in your browser. No accounts, no cloud sync, no remote storage." />
+  <meta name="keywords"
+    content="Vault, password manager, offline password manager, local-first password manager, browser password vault, PWA password manager, encrypted password vault" />
   <meta name="robots" content="index, follow" />
   <meta name="theme-color" content="#efede8" />
   <link rel="canonical" href="https://www.simlibro.com/vault/" />
 
   <meta property="og:title" content="Vault | Offline Password Manager PWA" />
-  <meta
-    property="og:description"
-    content="An offline password manager that encrypts and stores your vault locally in the browser. No accounts, no cloud sync, no remote server."
-  />
+  <meta property="og:description"
+    content="An offline password manager that encrypts and stores your vault locally in the browser. No accounts, no cloud sync, no remote server." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://www.simlibro.com/vault/" />
 
@@ -54,6 +49,15 @@
 </head>
 
 <body>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QZ0XSR4FYV"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-QZ0XSR4FYV');
+  </script>
   <div class="site-shell">
     <header class="site-header">
       <a class="site-brand" href="index.html">
@@ -116,10 +120,12 @@
         <article class="site-panel">
           <h2>What it stores</h2>
           <p>
-            Vault stores titles, usernames, passwords, recovery notes, URLs, and general notes in one encrypted local vault.
+            Vault stores titles, usernames, passwords, recovery notes, URLs, and general notes in one encrypted local
+            vault.
           </p>
           <p class="note">
-            See the Install page for platform guidance, the Privacy page for responsibilities, and the Technical page for implementation detail.
+            See the Install page for platform guidance, the Privacy page for responsibilities, and the Technical page
+            for implementation detail.
           </p>
         </article>
       </section>
@@ -127,7 +133,8 @@
       <section class="site-callout">
         <h2>Plain summary</h2>
         <p>
-          Vault does not send your passwords to a Vault server. The developer cannot recover a forgotten master password.
+          Vault does not send your passwords to a Vault server. The developer cannot recover a forgotten master
+          password.
           Your data stays under your control, which also means backup discipline is your responsibility.
         </p>
       </section>
@@ -144,4 +151,5 @@
     </footer>
   </div>
 </body>
+
 </html>

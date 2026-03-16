@@ -1,16 +1,19 @@
 :root {
     --bg: #efede8;
-    --panel: #f5f3ee;
+    --panel: #f3f1eb;
     --field: #ffffff;
-    --text: #2b2b28;
+    --text: #2f2d29;
     --muted: #6b6a63;
-    --light: rgba(255, 255, 255, .9);
-    --dark: rgba(180, 176, 168, .45);
+    --light: rgba(255, 255, 255, .88);
+    --dark: rgba(180, 176, 168, .34);
     --radius: 14px;
     --gap: 1rem;
     --icon-size: 2rem;
     --max-width: 1040px;
-    --border: 3px solid var(--text);
+    --border: 2px solid rgba(47, 45, 41, .7);
+
+    --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+    --font-heading: Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 * {
@@ -24,7 +27,7 @@ html {
 body {
     margin: 0;
     padding: 1rem;
-    font: 16px/1.45 system-ui, sans-serif;
+    font: 16px/1.45 var(--font-body);
     background: var(--bg);
     color: var(--text);
 }
@@ -48,6 +51,10 @@ textarea {
     display: none !important;
 }
 
+strong {
+    font-weight: 520;
+}
+
 /* ---------- shared site shell ---------- */
 
 .site-shell {
@@ -65,8 +72,8 @@ textarea {
     background: var(--panel);
     border-radius: var(--radius);
     box-shadow:
-        -6px -6px 12px var(--light),
-        6px 6px 12px var(--dark);
+        -4px -4px 8px var(--light),
+        4px 4px 8px var(--dark);
 }
 
 .site-header {
@@ -100,8 +107,8 @@ textarea {
     border-radius: 12px;
     background: var(--panel);
     box-shadow:
-        inset -3px -3px 6px var(--light),
-        inset 3px 3px 6px var(--dark);
+        inset -2px -2px 4px var(--light),
+        inset 2px 2px 4px var(--dark);
     font-size: 1.1rem;
 }
 
@@ -146,8 +153,8 @@ button:not(.icon-button):active,
 
 .site-link.current {
     box-shadow:
-        inset -3px -3px 6px var(--light),
-        inset 3px 3px 6px var(--dark);
+        inset -2px -2px 4px var(--light),
+        inset 2px 2px 4px var(--dark);
     background: var(--panel);
 }
 
@@ -172,7 +179,23 @@ button:not(.icon-button):active,
 .site-callout h2,
 .site-callout h3 {
     margin: 0 0 .6rem;
-    line-height: 1.15;
+    line-height: 1.18;
+    letter-spacing: .01em;
+    font-family: var(--font-heading);
+}
+
+.site-panel h1 {
+    font-weight: 520;
+}
+
+.site-panel h2,
+.site-callout h2 {
+    font-weight: 500;
+}
+
+.site-panel h3,
+.site-callout h3 {
+    font-weight: 480;
 }
 
 .site-panel p,
@@ -197,8 +220,8 @@ button:not(.icon-button):active,
 .site-eyebrow {
     margin-bottom: .4rem;
     color: var(--muted);
-    font-size: .9rem;
-    letter-spacing: .04em;
+    font-size: .85rem;
+    letter-spacing: .06em;
     text-transform: uppercase;
 }
 
@@ -373,8 +396,8 @@ button:not(.icon-button):active,
 
 .entry-title {
     flex: 0 1 auto;
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: .98rem;
+    font-weight: 500;
     overflow: hidden;
     text-overflow: ellipsis;
 }
@@ -473,12 +496,12 @@ textarea {
     align-items: center;
     justify-content: center;
     padding: 0;
-    border-radius: 8px;
+    border-radius: 10px;
     cursor: pointer;
     background: var(--panel);
     box-shadow:
-        inset -3px -3px 6px var(--light),
-        inset 3px 3px 6px var(--dark);
+        inset -2px -2px 4px var(--light),
+        inset 2px 2px 4px var(--dark);
     transition: transform .15s ease, opacity .15s ease;
 }
 
